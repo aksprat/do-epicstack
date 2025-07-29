@@ -1,0 +1,36 @@
+name: epic-remix-app
+services:
+- name: web
+  source_dir: /
+  github:
+    repo: aprat2406/fly-remix
+    branch: main
+    deploy_on_push: true
+  run_command: npm start
+  build_command: npm run build
+  environment_slug: node-js
+  instance_count: 1
+  instance_size_slug: basic-xxs
+  http_port: 3000
+  health_check:
+    http_path: /healthcheck
+  env:
+  - key: NODE_ENV
+    value: "production"
+  - key: SESSION_SECRET
+    value: "YOUR_SESSION_SECRET_HERE"
+  - key: INTERNAL_COMMAND_TOKEN
+    value: "YOUR_INTERNAL_COMMAND_TOKEN_HERE"
+  - key: HONEYPOT_SECRET
+    value: "YOUR_HONEYPOT_SECRET_HERE"
+  - key: DATABASE_URL
+    value: "${db.DATABASE_URL}"
+  - key: DIRECT_URL
+    value: "${db.DATABASE_URL}"
+
+databases:
+- name: db
+  engine: PG
+  version: "14"
+  size: basic
+  num_nodes: 1
