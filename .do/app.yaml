@@ -3,7 +3,7 @@ services:
 - name: web
   source_dir: /
   github:
-    repo: aprat2406/fly-remix
+    repo: aksprat/do-epicstack
     branch: main
     deploy_on_push: true
   run_command: npm start
