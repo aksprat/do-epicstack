@@ -31,6 +31,6 @@ services:
 databases:
 - name: db
   engine: PG
-  version: "14"
+  version: "17"
   size: basic
   num_nodes: 1
